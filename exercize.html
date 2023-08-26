@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text">
+<button>add</button>
+
+<script>
+    const input = document.querySelector('input');
+    const button = document.querySelector('button');
+    const todos = JSON.parse(localStorage.getItem('todos')) || [];
+    render();
+    button.onclick = function () {
+        todos.push(input.value);
+        const div = document.createElement('div');
+        div.innerText = input.value;
+        document.body.append(div);
+        localStorage.setItem('todos', JSON.stringify(todos));
+        input.value = '';
+    }
+    function render() {
+        todos.forEach((value) => {
+            const div = document.createElement('div');
+            div.innerText = value;
+            document.body.append(div);
+        })
+    }
+</script>
+</body>
+</html>
